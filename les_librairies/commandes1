@@ -1,0 +1,15 @@
+vi e0.c			permet d'éditer le fichier source C e0.c	(Deux religions emacs ou vi, les autres sont des mécréants)
+gcc -o e0 e0.c		permet de compiler le fichier source C e0.c et de générer directement un exécutable
+./e0			permet de lancer l'exécution de e0 dans le répertoire courant
+file e0.c		permet d'afficher le type du fichier e0.c, ô joie Unix dit que c'est un fichier C
+file e0			""                                   e0, Unix dit que c'est un exécutale pour x86_64, mon Pentium 7 
+gcc -S e0.c		permet de générer le code assembleur x86_64 du fichier e0.c, qui est automatiquement nommé e0.s, comme aSsembleur
+vi e0.s			permet d'éditer le fichier assembleur e0.s, on remarque qu'il y a des sections
+gcc -c e0.c		permet de générer le code objet binaire correspondant à e0.c, qui est automatiquement nommé e0.o, comme Object
+objdump -D e0.o		permet de faire un dump (un décodage texte) des sections d'un fichier .o
+
+Avez-vous trouvé la réponse à la différence du fichier e0.c ?
+Je vous ai dit une grosse connerie. Laquelle ?
+La suite au prochain numéro.
+
+

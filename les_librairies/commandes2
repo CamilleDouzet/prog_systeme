@@ -1,0 +1,26 @@
+Mais oui, bien sûr, #include n'inclut pas les bilbiothèques, il inclut les prototypes des fonctions et les extern des variables qui sont
+	définis ailleurs
+
+Les bibliothèques, les librairies sont au centre de tout, comment les construire ?
+vi e1.c
+gcc -o e1 e1.c ne se compile pas correctement, il y a une référence indéfinie vers fonctionCool, il faut forcément ajouter une bibliothèque
+on regarde le fichier .h, et on voit quelque chose d'intéressant, le prototype de la fonction fonctionCool
+DEFINITION Une bliothèque = 2 fichiers, 
+	un .h (comme Header) qu'on donne à tous ceux qui veulent utiliser notre bibliothèque, ce fichier texte est lisible
+		et ne contient que des prototypes, des définitions de structures et des extern de variables
+	et un libXX.a (comme Archive XX) que l'on compile et qu'on donne avec le fichier .h
+		le fichier .a est construit à partir d'un fichier C source que l'on conserve précieusement et que l'on ne donne pas en général
+	le fichier .h représente l'Application Program Interface API de votre bibliothèque
+où y'a t-il des fichiers .a ?
+ls /usr/lib/gcc/x86_64-linux-gnu/7.5.0/*.a
+notez que ces fichiers .a commencent tous par libXX.a
+file /usr/lib/gcc/x86_64-linux-gnu/7.5.0/libgcc.a
+Comment créer une bibliothèque qui marche
+vi mabib.c
+vi mabib.h
+gcc -c mabib.c			-> mabib.o
+ar crv libmabib.a mabib.o	-> création de l'archive libmabib.a (c)reate in(s)ert (v)erbose
+ranlib libmabib.a		-> indexe l'archive pour que l'diteur de liens oit content
+gcc -o e1 e1.c -L. -lmabib	-> réalise l'édition de liens, -L. dit au compilo que l'archive se trouve dans le répertoire courant
+				le -lmabib est traduit par le compilo en "ah oui, tu veux faire l'éditions de liens avec un fichier archive
+				qui s'appelle libmabib.a
